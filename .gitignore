@@ -25,3 +25,4 @@ dist-ssr
 
 # Python related ignores
 venv
+__pycache__
