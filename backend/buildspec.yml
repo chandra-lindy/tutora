@@ -9,11 +9,9 @@ phases:
   pre_build:
     commands:
       - echo Pulling source code...
-      - git pull origin main
 
   build:
     commands:
       - echo Restarting uvicorn service...
-      - systemctl --user restart tutora-backend.service
 
 
