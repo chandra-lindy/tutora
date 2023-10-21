@@ -26,3 +26,6 @@ dist-ssr
 # Python related ignores
 venv
 __pycache__
+
+# Environment files
+.env
