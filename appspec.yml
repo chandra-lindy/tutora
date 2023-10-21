@@ -1,0 +1,14 @@
+version: 0.0
+os: linux
+files:
+  - source: .
+    destination: /home/ubuntu/tutora
+hooks:
+  BeforeInstall:
+    - location: backend/scripts/install_dependencies.sh
+      timeout: 300
+      runas: ubuntu
+  AfterInstall:
+    - location: backend/scripts/restart_server.sh
+      timeout: 300
+      runas: ubuntu
