@@ -30,7 +30,7 @@ const Login = () => {
     } catch (error) {
       setIsLoading(false);
       console.log("error signing in: ", error);
-      navigate("/login", { state: { error: error.message } });
+      navigate("/", { state: { error: error.message } });
     }
   }, [email, password, navigate]);
 
@@ -69,8 +69,9 @@ const Login = () => {
       ) : (
         <div className="flex flex-col items-center bg-white rounded-lg p-8 shadow-lg">
           <Link to="/">
-            {/* <img src={logo} alt="Scholarly Logo" className="max-w-md mb-4" /> */}
-            <h1 className="max-w-md mb-4">Tutora</h1>
+            <h1 className="max-w-md text-4xl text-brand-blue-300 font-extrabold">
+              Tutora
+            </h1>
           </Link>
 
           <p

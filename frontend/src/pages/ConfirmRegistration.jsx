@@ -47,8 +47,9 @@ const ConfirmRegistration = () => {
     <div className="flex flex-col items-center justify-center h-screen">
       <div className="flex flex-col bg-white p-8 rounded-lg shadow-lg">
         <Link to="/">
-          {/* <img src={logo} alt="Scholarly logo" className="max-w-md mb-4" /> */}
-          <h1 className="max-w-md mb-4">Tutora</h1>
+          <h1 className="max-w-md text-4xl text-brand-blue-300 font-extrabold">
+            Tutora
+          </h1>
         </Link>
         <p
           className="p-2 my-4 text-red-600 text-xs text-center"

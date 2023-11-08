@@ -79,7 +79,9 @@ const Register = () => {
         <div className="flex flex-col items-center bg-white p-8 rounded-lg shadow-lg">
           <Link to="/">
             {/* <img src={logo} alt="Scholarly Logo" className="max-w-md mb-4" /> */}
-            <h1 className="max-w-md mb-4">Tutora</h1>
+            <h1 className="max-w-md text-4xl text-brand-blue-300 font-extrabold">
+              Tutora
+            </h1>
           </Link>
 
           <p

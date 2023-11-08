@@ -83,9 +83,10 @@ const Chat = () => {
   }, [messages]);
 
   return (
-    // <div className="absolute bottom-0 right-0 flex flex-col w-4/5 h-full mt-[3.75] text-brand-paper px-4 pb-4 bg-brand-paper">
     <div className="flex flex-col items-center justify-center h-screen">
-      <h1 className="text-8xl text-brand-blue-500 my-2">Tutora</h1>
+      <h1 className="text-8xl text-brand-blue-300 my-2 font-extrabold">
+        Tutora
+      </h1>
       <div
         className="bg-brand-blue-10 h-full w-3/4 h-11/12 rounded-xl p-4 overflow-y-auto"
         ref={chatDisplayRef}
