@@ -4,6 +4,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 // import logo from "../assets/logo-no-slogan.png";
 import { Link } from "react-router-dom";
 import { Bars } from "react-loader-spinner";
+import logo from "../assets/tutoraLogo.png";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -67,11 +68,9 @@ const Login = () => {
           visible={true}
         />
       ) : (
-        <div className="flex flex-col items-center bg-white rounded-lg p-8 shadow-lg">
+        <div className="flex flex-col items-center bg-white rounded-lg p-8 shadow-lg ring-1">
           <Link to="/">
-            <h1 className="max-w-md text-4xl mx-32 text-brand-blue-300 font-extrabold">
-              Tutora
-            </h1>
+            <img src={logo} className="w-48 mx-32" alt="Tutora Logo" />
           </Link>
 
           <p
@@ -103,7 +102,7 @@ const Login = () => {
               Login
             </button>
             <Link to="/register">
-              <p className="text-center mt-4 text-link">Register</p>
+              <p className="text-center mt-8 text-link">Register</p>
             </Link>
           </div>
         </div>

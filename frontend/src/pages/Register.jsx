@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import { Auth } from "aws-amplify";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
-// import logo from "../assets/logo-no-slogan.png";
+import logo from "../assets/tutoraLogo.png";
 import { Bars } from "react-loader-spinner";
 
 const Register = () => {
@@ -76,12 +76,9 @@ const Register = () => {
           visible={true}
         />
       ) : (
-        <div className="flex flex-col items-center bg-white p-8 rounded-lg shadow-lg">
+        <div className="flex flex-col items-center bg-white p-8 rounded-lg shadow-lg ring-1">
           <Link to="/">
-            {/* <img src={logo} alt="Scholarly Logo" className="max-w-md mb-4" /> */}
-            <h1 className="max-w-md text-4xl mx-32 text-brand-blue-300 font-extrabold">
-              Tutora
-            </h1>
+            <img src={logo} className="w-48 mx-32" alt="Tutora Logo" />
           </Link>
 
           <p
@@ -118,7 +115,7 @@ const Register = () => {
               Register
             </button>
             <Link to="/">
-              <p className="text-center mt-4 text-link">Login</p>
+              <p className="text-center mt-8 text-link">Login</p>
             </Link>
           </div>
         </div>

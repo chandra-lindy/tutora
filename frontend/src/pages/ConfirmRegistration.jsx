@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import { Auth } from "aws-amplify";
 import { useNavigate, useLocation } from "react-router-dom";
-// import logo from "../assets/logo-no-slogan.png";
+import logo from "../assets/tutoraLogo.png";
 import { Link } from "react-router-dom";
 
 const ConfirmRegistration = () => {
@@ -45,11 +45,9 @@ const ConfirmRegistration = () => {
 
   return (
     <div className="flex flex-col items-center justify-center h-screen">
-      <div className="flex flex-col bg-white p-8 rounded-lg shadow-lg">
+      <div className="flex flex-col bg-white p-8 rounded-lg shadow-lg ring-1">
         <Link to="/">
-          <h1 className="max-w-md text-4xl mx-32 text-brand-blue-300 font-extrabold">
-            Tutora
-          </h1>
+          <img src={logo} className="w-48 mx-32" alt="Tutora Logo" />
         </Link>
         <p
           className="p-2 my-4 text-red-600 text-xs text-center"
