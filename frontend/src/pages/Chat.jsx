@@ -51,21 +51,33 @@ const Chat = () => {
 
     const setupSocket = async () => {
       console.log("setting up socket");
-      const socketInstance = await getSocket();
-      if (!isMounted) return;
+      try {
+        const socketInstance = await getSocket();
+        if (!isMounted) return;
 
-      socketRef.current = socketInstance;
+        socketRef.current = socketInstance;
 
-      socketInstance.addEventListener("open", (e) => {
-        console.log("connected to server", e);
-      });
+        socketInstance.addEventListener("open", (e) => {
+          console.log("connected to server", e);
+        });
 
-      socketInstance.addEventListener("message", (e) => {
-        console.log("Received from server: ", e.data);
-        const ai_message = JSON.parse(e.data);
-        setMessages((prevMessages) => [...prevMessages, ai_message]);
-        console.log("messages: ", messages);
-      });
+        socketInstance.addEventListener("message", (e) => {
+          console.log("Received from server: ", e.data);
+          try {
+            const ai_message = JSON.parse(e.data);
+            setMessages((prevMessages) => [...prevMessages, ai_message]);
+            console.log("messages: ", messages);
+          } catch (error) {
+            console.error("Error parsing message: ", error);
+          }
+
+          socketInstance.addEventListener("error", (error) => {
+            console.error("WebSocket error: ", error);
+          });
+        });
+      } catch (error) {
+        console.error("Error setting up socket: ", error);
+      }
     };
 
     console.log("before calling setupSocket");
