@@ -88,7 +88,7 @@ const Chat = () => {
         Tutora
       </h1>
       <div
-        className="bg-brand-blue-10 h-full w-3/4 h-11/12 rounded-xl p-4 overflow-y-auto"
+        className="bg-brand-blue-10 h-full max-w-screen-md w-full rounded-xl p-4 overflow-y-auto"
         ref={chatDisplayRef}
       >
         {messages.map((message, index) => (
@@ -99,7 +99,7 @@ const Chat = () => {
           />
         ))}
       </div>
-      <div className="flex w-3/4 h-1/12 bg-brand-blue-100 rounded-xl my-1">
+      <div className="flex w-full max-w-screen-md h-1/12 bg-brand-blue-100 rounded-xl my-1">
         <input
           className="w-full mr-4 bg-brand-blue-100 p-2 pl-4 rounded-xl"
           type="text"
