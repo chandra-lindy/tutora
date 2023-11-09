@@ -69,7 +69,7 @@ const Login = () => {
       ) : (
         <div className="flex flex-col items-center bg-white rounded-lg p-8 shadow-lg">
           <Link to="/">
-            <h1 className="max-w-md text-4xl text-brand-blue-300 font-extrabold">
+            <h1 className="max-w-md text-4xl mx-32 text-brand-blue-300 font-extrabold">
               Tutora
             </h1>
           </Link>
