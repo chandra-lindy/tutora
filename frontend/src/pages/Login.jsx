@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { Auth } from "aws-amplify";
 import { useNavigate, useLocation } from "react-router-dom";
-// import logo from "../assets/logo-no-slogan.png";
 import { Link } from "react-router-dom";
 import { Bars } from "react-loader-spinner";
 import logo from "../assets/tutoraLogo.png";
@@ -27,6 +26,7 @@ const Login = () => {
     try {
       await Auth.signIn(email, password);
       setIsLoading(false);
+      console.log("before navigate to /chat");
       navigate("/chat");
     } catch (error) {
       setIsLoading(false);
