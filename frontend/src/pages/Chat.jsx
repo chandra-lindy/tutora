@@ -11,6 +11,7 @@ const Chat = () => {
   const chatDisplayRef = useRef(null);
   const socketRef = useRef(null);
   const navigate = useNavigate();
+  const chatInputRef = useRef(null);
 
   const handleSendMessage = (e) => {
     e.preventDefault();
@@ -28,6 +29,10 @@ const Chat = () => {
       setUserInput("");
     }
   };
+
+  useEffect(() => {
+    chatInputRef.current.focus();
+  }, []);
 
   useEffect(() => {
     const checkAuth = async () => {
@@ -88,7 +93,7 @@ const Chat = () => {
         Tutora
       </h1>
       <div
-        className="bg-brand-blue-10 h-full max-w-screen-md w-full rounded-xl p-4 overflow-y-auto"
+        className="h-full max-w-screen-md w-full overflow-y-auto"
         ref={chatDisplayRef}
       >
         {messages.map((message, index) => (
@@ -99,12 +104,13 @@ const Chat = () => {
           />
         ))}
       </div>
-      <div className="flex w-full max-w-screen-md h-1/12 bg-brand-blue-100 rounded-xl my-1">
+      <div className="flex w-full max-w-screen-md h-1/12 rounded-xl ring-2 my-2">
         <input
-          className="w-full mr-4 bg-brand-blue-100 p-2 pl-4 rounded-xl"
+          className="w-full mr-4 p-2 pl-4 rounded-xl"
           type="text"
           id="chat input"
           value={userInput}
+          ref={chatInputRef}
           onChange={(e) => setUserInput(e.target.value)}
           onKeyUp={(e) => {
             if (e.key === "Enter") {
