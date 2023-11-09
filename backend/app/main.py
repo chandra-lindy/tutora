@@ -21,9 +21,9 @@ from chat import chat
 
 load_dotenv()
 
-aws_access_key = os.environ.get("AWS_ACCESS_KEY_ID")
-aws_secret_access_key = os.environ.get("AWS_SECRET_ACCESS_KEY")
-aws_session_token = os.environ.get("AWS_SESSION_TOKEN")
+# aws_access_key = os.environ.get("AWS_ACCESS_KEY_ID")
+# aws_secret_access_key = os.environ.get("AWS_SECRET_ACCESS_KEY")
+# aws_session_token = os.environ.get("AWS_SESSION_TOKEN")
 use_nginx_cors = bool(int(os.environ.get("USE_NGINX_CORS")))
 secure_flag = bool(int(os.environ.get("SECURE_FLAG")))
 jwt_algorithm = os.environ.get("JWT_ALGORITHM")
@@ -115,3 +115,7 @@ async def websocket_endpoint(socket: WebSocket, user_name: str):
             await socket.send_text(json.dumps(reply))
     except WebSocketDisconnect:
         print("websocket disconnected")
+
+@app.get("/")
+async def get_root():
+    return "hello world"
