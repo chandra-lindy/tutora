@@ -69,7 +69,7 @@ const Register = () => {
         <Bars
           height="80"
           width="80"
-          color="#c8532c"
+          color="#00719c"
           ariaLabel="bars-loading"
           wrapperStyle={{}}
           wrapperClass=""

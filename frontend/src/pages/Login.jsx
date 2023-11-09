@@ -101,9 +101,12 @@ const Login = () => {
             <button className="btn" onClick={signIn}>
               Login
             </button>
-            <Link to="/register">
-              <p className="text-center mt-8 text-link">Register</p>
-            </Link>
+            <p className="text-center text-sm mt-8">
+              Don't have and ccount?{" "}
+              <Link to="/register">
+                <span className="ml-4 text-link">Register</span>
+              </Link>
+            </p>
           </div>
         </div>
       )}
