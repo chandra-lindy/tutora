@@ -17,7 +17,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from jose import JWTError, jwt
 
 # local imports
-from chat import chat
+from chat import *
 
 load_dotenv()
 
@@ -101,9 +101,9 @@ async def websocket_endpoint(socket: WebSocket, user_name: str):
     try:
         while True:
             data = await socket.receive_text()
-
+            data = addMessage(data)
             # data is the data structure sent from the frontend
-            print('data: ', data)
+            print(data)
 
             ai_message = chat()
 
