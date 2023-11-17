@@ -22,6 +22,6 @@ export default function ChatMessage({ source, message }) {
 }
 
 ChatMessage.propTypes = {
-  source: PropTypes.oneOf(["user", "ai"]).isRequired,
+  source: PropTypes.oneOf(["user", "ai", "debug"]).isRequired,
   message: PropTypes.string.isRequired,
 };

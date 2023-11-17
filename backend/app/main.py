@@ -5,6 +5,7 @@ from dotenv import load_dotenv
 import os
 import json
 import requests
+import asyncio
 
 # third party imports
 from fastapi import (
@@ -93,30 +94,35 @@ def get_current_user(authorization: HTTPAuthorizationCredentials = Security(secu
     except JWTError:
         raise HTTPException(status_code=403, detail="Invalid Token")
 
+async def ws_heartbeat(socket: WebSocket, interval: int = 30):
+    while True:
+        try:
+            await asyncio.sleep(interval)
+            await socket.ping()
+        except Exception as e:
+            print(f"Heartbeat error: {e}")
+            break
+
 @app.websocket("/ws/{user_name}")
 async def websocket_endpoint(socket: WebSocket, user_name: str):
     await socket.accept()
     chat = Chat()
 
+    heartbeat_task = asyncio.create_task(ws_heartbeat(socket))
+
     try:
         while True:
-            data = await socket.receive_text()
-            print('data before: ', data)
-            print('type: ', type(data))
-            # data = json.loads(data)
-            # print('data after: ', data)
-            # print('type: ', data)
+            user_message = await socket.receive_text()
 
-            # humna_message = data[0]['text']
-            ai_message = chat.invoke(data)
-
-            reply = {
-                "source": "ai",
-                "text": ai_message
-            }
+            if user_message in chat.debug_commands:
+                reply = chat.debug(user_message)
+            else: reply = chat.invoke(user_message)
 
             await socket.send_text(json.dumps(reply))
+
     except WebSocketDisconnect:
+        heartbeat_task.cancel()
+        await socket.close()
         print("websocket disconnected")
 
 @app.get("/")

@@ -16,7 +16,7 @@ from tutorabot.prompts import (
 
 class Chat():
   def __init__(self):
-    self.debug_commands = ['print']
+    self.debug_commands = ['report']
     self.llm = ChatOpenAI(
       openai_api_key=settings.OPENAI_API_KEY,
       model=settings.OPENAI_MODEL_NAME,
@@ -38,9 +38,15 @@ class Chat():
     )
 
   def invoke(self, user_message):
-    return self.chain.predict(input=user_message)
+    ai_message = self.chain.predict(input=user_message)
+    return {
+      'source': 'ai',
+      'text': ai_message
+    }
 
   def debug(self, command):
-    if command == "print":
-      print(self.memory.entity_store.store, end='\n\n')
-      return
+    if command == "report":
+      return {
+        'source': 'debug',
+        'text': 'Debug mode (not part of conversation):\n\nUser Information:\n' + str(self.memory.entity_store.store)
+      }

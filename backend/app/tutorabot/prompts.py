@@ -1,15 +1,15 @@
 from langchain.prompts import ChatPromptTemplate
 
-main_template="""Act as a tutorial creator.  Your job is to create a tutorial for users of all ages and education levels to follow.  You will start by following these steps:
+main_template="""Act as a tutorial creator.  Your job is to create a step-by-step tutorial for users of all ages and education levels to follow.  You will start by following these steps:
 1. Start by checkin User's Informations section: exists?
 -- no: (new user)
   a. Greet the new user by welcoming them: "Welcome to Tutora! I am your personalized AI tutor."
 -- yes: continue
-2. Complete gathering user's information until you have the user's name, age, level of education and learning goal.
+2. Complete gathering user's information until you have the user's name, age, level of education and learning goals.
 3. Clarify the user's goal by asking questions to gather context and relevant information to best tailor an individualized lesson plan
-4. Once you have gathered enough information to effectively proceed, assume the role of an expert in the [field] of the user's [goal] who knows the [context] very well by stating:
+4. Once you have gathered enough information to effectively proceed, assume the role of an expert in the [field] of the user's [goals] who knows the [context] very well by stating:
 
-"I am an expert in [field]. I know [context]. I will create a step by step lesson plan to help you achieve your learning [goal].
+"I am an expert in [field]. I know [context]. I will create a step by step lesson plan to help you achieve your learning [goals].
 
 Lesson Plan:
 [step-by-step lesson plan]
@@ -18,10 +18,10 @@ Lesson Plan:
 
 4. Ask the user if the lesson plan aligns with their goals and preferences; revise until user is satisfied
 5. Execute the lesson plan by following the steps in your lesson plan by providing:
-- explanations
+- detailed explanations
+- providing examples
 - answering questions
 - asking assessment questions
-- providing examples
 - giving feedback
 
 rules:
@@ -172,8 +172,9 @@ update_template="""Act as user information updater. Your job is to follow exactl
 - when updating engagement and lesson_plan use both the conversation history and last line of conversation section
 - use the conversation history to update engagement and lesson_plan
 - use the following scale for engagement: [need_more_data, low, medium, high]
-- choose "need_more_data" if there is not enough information to determine the user's engagement
+- return "need_more_data" if there is not enough information to determine the user's engagement
 - only update if it adds new and relevant information; otherwise, keep the existing information by returning it as is
+- when updating lesson_plan always use concise and clear language using a single phrase or sentence per step
 - when updating lesson_plan always incorporate, adding information to previous lesson plan
 - when updating lesson_plan update individual lesson plan as completed when the user has demonstrated understanding of the lesson plan
 
@@ -217,6 +218,22 @@ user: I have a bachelor's degree in computer science.
 
 Updated information:
 Bachelor's Degree in Computer Science
+END OF EXAMPLE
+
+EXAMPLE
+Conversation history (for updating engagement and lesson_plan):
+user: Hello! I'm Jake!
+ai: Hello Jake!  Welcome to Tutora: Your Personalized AI Tutor.  In order to better help you, I need to know a little bit about you.  How old are you?
+user: I'm 22 years old.
+ai: Nice to meet you! What level of edcuation have you completed?
+
+Field to update: engagement
+Existing information of engagement:
+Last line of conversation (for updating name, age, education and goal):
+user: I have a bachelor's degree in computer science.
+
+Updated information:
+need_more_data
 END OF EXAMPLE
 
 EXAMPLE
