@@ -20,7 +20,7 @@ const Chat = () => {
       const newMessages = [...messages, user_message];
 
       try {
-        socketRef.current.send(JSON.stringify(newMessages));
+        socketRef.current.send(userInput);
       } catch (err) {
         console.error("Error sending message: ", err);
       }

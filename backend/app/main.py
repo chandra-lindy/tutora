@@ -17,7 +17,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from jose import JWTError, jwt
 
 # local imports
-from chat import *
+from tutorabot.chat import Chat
 
 load_dotenv()
 
@@ -95,17 +95,20 @@ def get_current_user(authorization: HTTPAuthorizationCredentials = Security(secu
 
 @app.websocket("/ws/{user_name}")
 async def websocket_endpoint(socket: WebSocket, user_name: str):
-    print('user_name: ', user_name)
     await socket.accept()
+    chat = Chat()
 
     try:
         while True:
             data = await socket.receive_text()
-            data = addMessage(data)
-            # data is the data structure sent from the frontend
-            print(data)
+            print('data before: ', data)
+            print('type: ', type(data))
+            # data = json.loads(data)
+            # print('data after: ', data)
+            # print('type: ', data)
 
-            ai_message = chat()
+            # humna_message = data[0]['text']
+            ai_message = chat.invoke(data)
 
             reply = {
                 "source": "ai",
