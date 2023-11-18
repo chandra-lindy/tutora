@@ -1,8 +1,25 @@
 import PropTypes from "prop-types";
 import userIcon from "../assets/user-icon.png";
 import aiIcon from "../assets/ai-icon.png";
+import JSONPretty from "react-json-pretty";
+import "react-json-pretty/themes/monikai.css";
 
 export default function ChatMessage({ source, message }) {
+  if (source === "debug") {
+    const customStyles = {
+      backgroundColor: "bg-brand-blue-100",
+      padding: "p-4",
+      display: "block",
+      whiteSpace: "pre-wrap",
+    };
+    return (
+      <div className="flex flex-col p-4 whitespace-pre-line bg-brand-blue-100 text-white">
+        <p className="mb-4">Debug report (not part of conversation):</p>
+        <JSONPretty data={message} style={customStyles} />
+      </div>
+    );
+  }
+
   return (
     <div
       className={`flex flex-row p-4 whitespace-pre-line ${

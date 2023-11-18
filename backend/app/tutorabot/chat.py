@@ -48,5 +48,5 @@ class Chat():
     if command == "report":
       return {
         'source': 'debug',
-        'text': 'Debug mode (not part of conversation):\n\nUser Information:\n' + str(self.memory.entity_store.store)
+        'text': self.memory.entity_store.store
       }

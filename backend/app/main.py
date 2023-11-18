@@ -94,21 +94,10 @@ def get_current_user(authorization: HTTPAuthorizationCredentials = Security(secu
     except JWTError:
         raise HTTPException(status_code=403, detail="Invalid Token")
 
-async def ws_heartbeat(socket: WebSocket, interval: int = 30):
-    while True:
-        try:
-            await asyncio.sleep(interval)
-            await socket.ping()
-        except Exception as e:
-            print(f"Heartbeat error: {e}")
-            break
-
 @app.websocket("/ws/{user_name}")
 async def websocket_endpoint(socket: WebSocket, user_name: str):
     await socket.accept()
     chat = Chat()
-
-    heartbeat_task = asyncio.create_task(ws_heartbeat(socket))
 
     try:
         while True:
@@ -121,7 +110,6 @@ async def websocket_endpoint(socket: WebSocket, user_name: str):
             await socket.send_text(json.dumps(reply))
 
     except WebSocketDisconnect:
-        heartbeat_task.cancel()
         await socket.close()
         print("websocket disconnected")
 
