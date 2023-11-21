@@ -101,11 +101,11 @@ const Chat = () => {
 
   return (
     <div className="flex flex-col items-center justify-center h-screen">
-      <h1 className="text-8xl text-brand-blue-300 my-2 font-extrabold">
+      <h1 className="text-6xl text-brand-blue-300 my-2 font-extrabold">
         Tutora
       </h1>
       <div
-        className="h-full max-w-screen-md w-full overflow-y-auto"
+        className="h-full max-w-screen-md w-full overflow-y-auto px-2"
         ref={chatDisplayRef}
       >
         {messages.map((message, index) => (
@@ -116,22 +116,24 @@ const Chat = () => {
           />
         ))}
       </div>
-      <div className="flex w-full max-w-screen-md h-1/12 rounded-xl ring-2 my-2">
-        <input
-          className="w-full mr-4 p-2 pl-4 rounded-xl"
-          type="text"
-          id="chat input"
-          value={userInput}
-          ref={chatInputRef}
-          onChange={(e) => setUserInput(e.target.value)}
-          onKeyUp={(e) => {
-            if (e.key === "Enter") {
-              handleSendMessage(e);
-            }
-          }}
-        />
-        <div className="p-2" onClick={handleSendMessage}>
-          <img src={chatIcon} alt="Chat Icon" />
+      <div className="w-full p-2 max-w-screen-md h-1/12">
+        <div className="flex rounded-xl ring-2">
+          <input
+            className="w-full mr-4 p-2 pl-4 rounded-xl"
+            type="text"
+            id="chat input"
+            value={userInput}
+            ref={chatInputRef}
+            onChange={(e) => setUserInput(e.target.value)}
+            onKeyUp={(e) => {
+              if (e.key === "Enter") {
+                handleSendMessage(e);
+              }
+            }}
+          />
+          <div className="p-2" onClick={handleSendMessage}>
+            <img src={chatIcon} alt="Chat Icon" />
+          </div>
         </div>
       </div>
     </div>

@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import userIcon from "../assets/user-icon.png";
 import aiIcon from "../assets/ai-icon.png";
+import ReactMarkdown from "react-markdown";
 import JSONPretty from "react-json-pretty";
 import "react-json-pretty/themes/monikai.css";
 
@@ -33,7 +34,9 @@ export default function ChatMessage({ source, message }) {
         alt={`${source} icon`}
         className="mr-4 max-h-8"
       />
-      <div className="mr-4">{message}</div>
+      <div className="prose flex flex-col justify-center mr-4">
+        <ReactMarkdown>{message}</ReactMarkdown>
+      </div>
     </div>
   );
 }
