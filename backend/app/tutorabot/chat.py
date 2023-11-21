@@ -16,7 +16,7 @@ from tutorabot.prompts import (
 
 class Chat():
   def __init__(self):
-    self.debug_commands = ['report']
+    self.debug_commands = ['/report']
     self.llm = ChatOpenAI(
       openai_api_key=settings.OPENAI_API_KEY,
       model=settings.OPENAI_MODEL_NAME,
@@ -45,7 +45,7 @@ class Chat():
     }
 
   def debug(self, command):
-    if command == "report":
+    if command == "/report":
       return {
         'source': 'debug',
         'text': self.memory.entity_store.store

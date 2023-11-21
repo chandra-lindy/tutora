@@ -5,15 +5,12 @@ from dotenv import load_dotenv
 import os
 import json
 import requests
-import asyncio
 
 # third party imports
 from fastapi import (
-    FastAPI, Depends, HTTPException,
-    Security, WebSocket, WebSocketDisconnect,
-    Response, UploadFile)
+    FastAPI, HTTPException,
+    Security, WebSocket, WebSocketDisconnect)
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
-from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 from jose import JWTError, jwt
 
@@ -112,7 +109,3 @@ async def websocket_endpoint(socket: WebSocket, user_name: str):
     except WebSocketDisconnect:
         await socket.close()
         print("websocket disconnected")
-
-@app.get("/")
-async def get_root():
-    return "hello world"

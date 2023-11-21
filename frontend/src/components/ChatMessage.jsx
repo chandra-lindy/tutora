@@ -34,7 +34,7 @@ export default function ChatMessage({ source, message }) {
         alt={`${source} icon`}
         className="mr-4 max-h-8"
       />
-      <div className="mr-4">
+      <div className="prose flex flex-col justify-center mr-4">
         <ReactMarkdown>{message}</ReactMarkdown>
       </div>
     </div>
